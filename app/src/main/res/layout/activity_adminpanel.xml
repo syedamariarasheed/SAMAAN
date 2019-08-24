@@ -8,21 +8,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Adminpanel">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="1dp"
+        android:text="Here you see the all request by clicking the See All Request Button">
 
+    </TextView>
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/ic_time_to_leave_black_24dp"
+        />
     <Button
         android:onClick="GetRequest"
         android:layout_width="200dp"
         android:padding="2dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFF"
+        android:layout_height="60dp"
+        android:layout_marginBottom="1dp"
         android:text="See All Request"
          />
-    <Button
-        android:layout_width="200dp"
-        android:padding="2dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
-        android:text="Completed Request"
-        />
+
 
 </LinearLayout>

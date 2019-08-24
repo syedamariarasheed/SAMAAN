@@ -7,8 +7,15 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -16,6 +23,9 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +50,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         textView2=findViewById(R.id.mTime);
         textView3=findViewById(R.id.mTransport);
         textView4=findViewById(R.id.mWeight);
+
         Intent intent=getIntent();
         //get Intent
         des=intent.getExtras().getString("Desc_");
@@ -61,6 +72,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
            mapView.getMapAsync(this);
        }
     }
+
 
     @Override
     protected void onStart() {

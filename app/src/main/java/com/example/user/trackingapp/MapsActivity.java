@@ -43,6 +43,7 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -237,47 +238,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-    public void SendMyDetails(View view) {
+    public void SendMyDetails(View view)
+       {
+            Intent intent=getIntent();
 
-
-        Intent intent=getIntent();
-        final String Descrip1=intent.getStringExtra("Descrip");
-        final String Transport=intent.getStringExtra("Transport");
-        final String Time=intent.getStringExtra("Time");
-        final String Weight=intent.getStringExtra("Weight");
+            final String Descrip1=intent.getStringExtra("Descrip");
+            final String Transport=intent.getStringExtra("Transport");
+            final String Time=intent.getStringExtra("Time");
+            final String Weight=intent.getStringExtra("Weight");
 
 // send using Volly
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
 
-                Toast.makeText(MapsActivity.this,"SuccessFully Send Request",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MapsActivity.this,MainActivity.class));
-                finish();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(),"SuccessFully Send Request",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(MapsActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+                }
             }
+            ){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+
+                    Map<String,String> param=new HashMap<String, String>();
+                    param.put("Desc_",Descrip1);
+                    param.put("Transport_",Transport);
+                    param.put("Time_",Time);
+                    param.put("Weight_",Weight);
+                    param.put("Loc_", String.valueOf(latLng));
+                    // Toast.makeText(MapsActivity.this,Descrip+Transport+Time+Weight+latLng,Toast.LENGTH_SHORT).show();
+                    return param;
+                }
+            };
+            SingleTon.getSingleTon(getApplicationContext()).addIntoReqQue(stringRequest);
         }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError{
 
-                Map<String,String> param=new HashMap<String, String>();
-                param.put("Desc_",Descrip1);
-                param.put("Transport_",Transport);
-                param.put("Time_",Time);
-                param.put("Weight_",Weight);
-                param.put("Loc_", String.valueOf(latLng));
-               // Toast.makeText(MapsActivity.this,Descrip+Transport+Time+Weight+latLng,Toast.LENGTH_SHORT).show();
-                return param;
-            }
-        };
-        SingleTon.getSingleTon(MapsActivity.this).addIntoReqQue(stringRequest);
-    }
 
 
 }

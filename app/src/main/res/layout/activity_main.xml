@@ -8,22 +8,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<ImageView
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@drawable/ic_shopping_cart_black_24dp"
+    />
     <Button
         android:onClick="GoAdminpanel"
         android:layout_width="200dp"
         android:padding="2dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFF"
+        android:layout_height="60dp"
+        android:layout_marginBottom="2dp"
         android:text="Admin Panel"
         />
     <Button
        android:id="@+id/Userpanel"
-        android:onClick="UserPanel"
         android:layout_width="200dp"
+        android:onClick="UserPanel"
         android:padding="2dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFF"
+        android:layout_height="60dp"
+        android:layout_marginBottom="3dp"
         android:text="User Panel"
         />
 
